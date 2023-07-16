@@ -14,7 +14,6 @@ All the reference PJ files are in their default locations, also including
 
 
 ## Operators
-
 ### StageToRedshiftOperator
 The StageToRedshiftOperator is responsible for loading JSON formatted files from Amazon S3 to Amazon Redshift. 
 Core function: dynamically creates and runs a SQL COPY statement based on the provided parameters.
@@ -44,7 +43,6 @@ The data pipeline allows for additional functionality such as logging, mode swit
 Dim subDAG was implemented and tested early; subDAG eventually commented out to accelerate the new subsequent features' testing.
 
 # Extra Features Guidelines
-
 ## Timed Template in Stage Operator
 To enable the timed template functionality in the StageToRedshiftOperator, follow these steps:
 1. In the DAG definition, set the `s3_key` parameter of the StageToRedshiftOperator to include the time template as a string. 
@@ -98,8 +96,7 @@ FROM songplays sp
 JOIN artists a ON sp.artist_id = a.artist_id
 GROUP BY a.name
 ORDER BY play_count DESC
-LIMIT 5;
-=>
+LIMIT 5; =>
 artist_name  play_count
 Black Eyed Peas	3
 The Rolling Stones	2
@@ -115,8 +112,7 @@ JOIN songs s ON sp.song_id = s.song_id
 JOIN artists a ON sp.artist_id = a.artist_id
 GROUP BY s.title, a.name
 ORDER BY play_count DESC
-LIMIT 1;
-=>
+LIMIT 1; =>
 song_title artist_name play_count
 Let's Get It Started	        Black Eyed Peas	    3
 Angie (1993 Digital Remaster)	The Rolling Stones	2
@@ -128,8 +124,7 @@ SELECT hour, COUNT(*) AS play_count
 FROM time t
 JOIN songplays sp ON t.start_time = sp.start_time
 GROUP BY hour
-ORDER BY play_count DESC;
-=>
+ORDER BY play_count DESC; =>
 hour 	play_count
 15	3
 21	3
